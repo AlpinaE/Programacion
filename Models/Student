@@ -1,0 +1,5 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace programcion.models
+{
