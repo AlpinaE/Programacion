@@ -1,0 +1,37 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model programcion.models.Student
+
+<!DOCTYPE html>
+<html>
+    <title>Detail</title>
+<body>
+    <h1>Fan</h1><br>
+   
+    <div class="text-center">
+        <table>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Name)</td>
+                <td>@Html.DisplayTextFor(model => model.Name)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Age)</td>
+                <td>@Html.DisplayTextFor(model => model.Age)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Hobbie)</td>
+                <td>@Html.DisplayTextFor(model => model.Hobbie)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Curso)</td>
+                <td>@Html.DisplayTextFor(model => model.Curso)</td>
+            </tr>
+             <tr>
+                <td>@Html.DisplayNameFor(model => model.Credito)</td>
+                <td>@Html.DisplayTextFor(model => model.Credito)</td>
+            </tr>
+        </table>
+    </div>
+    
+    
+</body>
+</html>

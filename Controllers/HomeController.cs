@@ -1,33 +1,76 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
-
+using programcion.models;
 
 using System.Linq;
 
-
-
-using System.Threading.Tasks;
-
-using Programacion.Models;
-
-namespace Programacion.Controllers
+namespace programcion.controllers
 {
-    public class HomeController : Controller
-    {
-        public IActionResult Index()
+
+    public class HomeController:Controller{
+
+        private readonly DatabaseContext _context;
+
+        public HomeController(DatabaseContext context)
         {
+            _context = context;
+        }
+
+
+        public IActionResult Index(){
+            return View(_context.Students.ToList());
+        }
+        
+        public IActionResult Create(){
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
+        public IActionResult Details(int? id){
+
+           if (id == null)
+            {
+                return NotFound();
+            }
+
+            var student= _context.Students
+                .SingleOrDefault(m => m.ID == id);
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            return View(student);
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        // POST: Home/RegistrarFan
+        [HttpPost]
+        public IActionResult Registrado(Student student){
+            Console.WriteLine("Registrado");
+            int age =DateTime.Now.Year - student.Birth.Year;
+            Random  rnd = new Random();
+            int numero = rnd.Next();
+            student.Age = age;
+            String curso= student.Curso;
+            int cred=0;
+            double total;
+
+            switch(curso){
+                case "Matematica":
+                    cred=4;
+                break;
+                case "Lenguaje":
+                    cred=5;
+                break;
+                case "Fisica":
+                    cred=6;
+                break;
+            }
+            total=cred* 100;
+            _context.Add(student);
+            _context.SaveChanges();
+
+            return View(student);
         }
     }
+
 }
