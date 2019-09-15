@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace programcion.models
+namespace programacion.models
 {
     public class DatabaseContext : DbContext
     {

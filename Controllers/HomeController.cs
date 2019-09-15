@@ -1,10 +1,10 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
-using programcion.models;
+using programacion.models;
 
 using System.Linq;
 
-namespace programcion.controllers
+namespace programacion.controllers
 {
 
     public class HomeController:Controller{
@@ -44,7 +44,7 @@ namespace programcion.controllers
 
         // POST: Home/RegistrarFan
         [HttpPost]
-        public IActionResult Registrado(Student student){
+        public IActionResult Registro(Student student){
             Console.WriteLine("Registrado");
             int age =DateTime.Now.Year - student.Birth.Year;
             Random  rnd = new Random();
@@ -52,7 +52,7 @@ namespace programcion.controllers
             student.Age = age;
             String curso= student.Curso;
             int cred=0;
-            double total;
+            
 
             switch(curso){
                 case "Matematica":
@@ -65,7 +65,8 @@ namespace programcion.controllers
                     cred=6;
                 break;
             }
-            total=cred* 100;
+           
+            cred=student.Credito;
             _context.Add(student);
             _context.SaveChanges();
 

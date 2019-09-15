@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace programcion.models
+namespace programacion.models
 {
     public class Student{
 
@@ -19,5 +19,7 @@ namespace programcion.models
         public String Curso{get;set;}
 
         public int Credito{get;set;}
+
+        public double Total { get { return Credito * 100; }}
     }
 }
